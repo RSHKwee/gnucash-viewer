@@ -176,7 +176,7 @@ public class JGnucashViewer extends JFrame {
   /**
    * The title of the frame.
    */
-  private static final String TITLE = "JGnucash";
+  private static String TITLE = "JGnucash";
 
   /**
    * The split-pane between account-tree and transactions-table.
@@ -467,6 +467,8 @@ public class JGnucashViewer extends JFrame {
     return jContentPane;
   }
 
+  static public String m_creationtime;
+
   /**
    * This method initializes this gui.
    */
@@ -477,6 +479,7 @@ public class JGnucashViewer extends JFrame {
     this.setJMenuBar(getJMenuBar());
     this.setContentPane(getJContentPane());
     this.setSize(defaultWidth, defaultHeight);
+    TITLE = TITLE + " (version " + m_creationtime + ")";
     this.setTitle(TITLE);
     this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -716,7 +719,9 @@ public class JGnucashViewer extends JFrame {
   /**
    * @param args empty or contains a gnucash-file-name as a first param.
    */
+
   public static void main(final String[] args) {
+    m_creationtime = JarInfo.getProjectVersion(JGnucashViewer.class);
     JGnucashViewer ste = new JGnucashViewer();
     installNimbusLaF();
     ste.initializeGUI();
