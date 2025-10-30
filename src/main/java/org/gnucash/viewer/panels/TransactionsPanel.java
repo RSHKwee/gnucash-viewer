@@ -278,27 +278,27 @@ public class TransactionsPanel extends JPanel {
 								.append(localSplit.getAccount().getQualifiedName())
 								.append("]\t ")
 								.append(localSplit.getQuantity())
-								.append(localSplit.getAccount().getCurrencyNameSpace().equals(GnucashAccount.CURRENCYNAMESPACE_CURRENCY) ? " "
+								.append(localSplit.getAccount().getCurrencyNameSpace().equals(GnucashAccount.TYPE_CURRENCY) ? " "
 										: " x ")
 								.append(localSplit.getAccount().getCurrencyID())
 								.append("\n");
 
 						for (GnucashTransactionSplit split : transaction.getSplits()) {
 							output.append("\"")
-									.append(split.getSplitAction())
+									.append(split.getAccount())
 									.append("\"\t \"")
 									.append(split.getDescription())
 									.append("\"\t [")
 									.append(split.getAccount().getQualifiedName())
 									.append("]\t ")
 									.append(split.getQuantity())
-									.append(localSplit.getAccount().getCurrencyNameSpace().equals(GnucashAccount.CURRENCYNAMESPACE_CURRENCY)
+									.append(localSplit.getAccount().getCurrencyNameSpace().equals(GnucashAccount.TYPE_CURRENCY)
 											? " " : " x ")
 									.append(split.getAccount().getCurrencyID())
 									.append("\n");
 						}
 						if (!transaction.isBalanced()) {
-							output.append("TRANSACTION IS NOT BALANACED! missung=" + transaction.getBalanceFormatet());
+							output.append("TRANSACTION IS NOT BALANACED! missung=" + transaction.getBalanceFormatted());
 						}
 
 						return output.toString();

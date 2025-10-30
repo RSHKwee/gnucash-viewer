@@ -2,6 +2,7 @@ package org.gnucash.jgnucash.panels;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -141,7 +142,7 @@ class SingleWritableTransactionTableModel extends SingleTransactionTableModel {
 						setDatePosted(aValue);
 						return;
 					case 1:
-						getWritableTransaction().setTransactionNumber(aValue.toString());
+						getWritableTransaction().setNumber(aValue.toString());
 						return;
 					case 2:
 						getWritableTransaction().setDescription(aValue.toString());
@@ -180,7 +181,7 @@ class SingleWritableTransactionTableModel extends SingleTransactionTableModel {
 				case 0:
 					return;
 				case 1:
-					split.setSplitAction(aValue.toString());
+					split.setAction(aValue.toString());
 					if (informListeners) {
 						for (TableModelListener listener : myTableModelListeners) {
 							listener.tableChanged(new TableModelEvent(this));
@@ -200,7 +201,7 @@ class SingleWritableTransactionTableModel extends SingleTransactionTableModel {
 							&& split.getQuantity().equals(new FixedPointNumber())
 							&& split.getValue().equals(new FixedPointNumber())
 							&& split.getDescription().trim().length() == 0
-							&& split.getSplitAction().trim().length() == 0) {
+							&& split.getAction().trim().length() == 0) {
 						//remove split
 						split.remove();
 						for (TableModelListener listener : myTableModelListeners) {
@@ -357,7 +358,7 @@ class SingleWritableTransactionTableModel extends SingleTransactionTableModel {
 	 * @param aValue a new value for the DataPosted-column of the transaction
 	 */
 	private void setDatePosted(final Object aValue) {
-		getWritableTransaction().setDatePosted(LocalDateTime.parse(aValue.toString(), DATEFORMAT));
+		getWritableTransaction().setDatePosted(LocalDate.parse(aValue.toString(), DATEFORMAT));
 		for (TableModelListener listener : myTableModelListeners) {
 			listener.tableChanged(new TableModelEvent(this));
 		}

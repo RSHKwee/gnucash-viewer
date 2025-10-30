@@ -54,7 +54,8 @@ import org.gnucash.viewer.actions.AccountAction;
 import org.gnucash.viewer.actions.TransactionSplitAction;
 import org.gnucash.viewer.panels.TransactionsPanel;
 import org.gnucash.write.GnucashWritableFile;
-import org.gnucash.write.impl.GnucashFileWritingImpl;
+//import org.gnucash.write.impl.GnucashFileWritingImpl;
+import org.gnucash.write.impl.GnucashWritableFileImpl;
 import org.java.plugin.PluginManager;
 import org.java.plugin.registry.Extension;
 import org.java.plugin.registry.Extension.Parameter;
@@ -112,7 +113,9 @@ public class JGnucash extends JGnucashViewer {
 	 */
 	@Override
 	protected final GnucashFile createModelFromFile(final File f) throws IOException {
-		return new GnucashFileWritingImpl(f);
+		GnucashWritableFileImpl gnucash = new GnucashWritableFileImpl(f);
+		return gnucash.getGnucashFile();
+		//return new GnucashFileWritingImpl(f);
 	}
 
 	/**

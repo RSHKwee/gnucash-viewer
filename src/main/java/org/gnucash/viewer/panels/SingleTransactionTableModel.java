@@ -195,7 +195,7 @@ public class SingleTransactionTableModel implements GnucashTransactionsSplitsTab
 					return DATEFORMAT.format(split.getTransaction().getDatePosted());
 				}
 				case 1: { //action
-					String action = split.getSplitAction();
+					String action = split.getAction();
 					if (action == null || action.trim().length() == 0) {
 						return "";
 					}
@@ -215,9 +215,9 @@ public class SingleTransactionTableModel implements GnucashTransactionsSplitsTab
 					if (split.getValue().isPositive()) {
 						if (split.getAccount().getCurrencyNameSpace().equals(getTransaction().getCurrencyNameSpace())
 								&& split.getAccount().getCurrencyID().equals(getTransaction().getCurrencyID())) {
-							return split.getValueFormatet();
+							return split.getValueFormatted();
 						}
-						return split.getValueFormatet() + " (" + split.getQuantityFormatet() + ")";
+						return split.getValueFormatted() + " (" + split.getQuantityFormatted() + ")";
 					} else {
 						return "";
 					}
@@ -226,9 +226,9 @@ public class SingleTransactionTableModel implements GnucashTransactionsSplitsTab
 					if (!split.getValue().isPositive()) {
 						if (split.getAccount().getCurrencyNameSpace().equals(getTransaction().getCurrencyNameSpace())
 								&& split.getAccount().getCurrencyID().equals(getTransaction().getCurrencyID())) {
-							return split.getValueFormatet();
+							return split.getValueFormatted();
 						}
-						return split.getValueFormatet() + " (" + split.getQuantityFormatet() + ")";
+						return split.getValueFormatted() + " (" + split.getQuantityFormatted() + ")";
 					} else {
 						return "";
 					}
